@@ -8,44 +8,46 @@
 var menuLinks = [
     { text: 'about', href: '/about' },
     {
-        text: 'catalog', href: '#', subLinks: [
+        text: 'catalog', href: 'catalog', subLinks: [
             { text: 'all', href: '/catalog/all' },
             { text: 'top selling', href: '/catalog/top' },
             { text: 'search', href: '/catalog/search' },
         ]
     },
     {
-        text: 'orders', href: '#', subLinks: [
+        text: 'orders', href: '#orders', subLinks: [
             { text: 'new', href: '/orders/new' },
             { text: 'pending', href: '/orders/pending' },
             { text: 'history', href: '/orders/history' },
         ]
     },
     {
-        text: 'account', href: '#', subLinks: [
+        text: 'account', href: 'account', subLinks: [
             { text: 'profile', href: '/account/profile' },
             { text: 'sign out', href: '/account/signout' },
         ]
     },
 ];
 // PART-1--------------------------------------------------|
-let mainEl = document.getElementsByTagName("main");
+// Now that you have a deeper understanding of DOM manipulation concepts,
+// ✅ if there is anything you would like to fix or change, now is the time to do so.
+let mainEl = document.querySelector("main");
 
 // Set the background color of mainEl to the value stored in the
 //  --main-bg CSS custom property.
 
-mainEl[0].style.backgroundColor = "var(--main-bg)";
+mainEl.style.backgroundColor = "var(--main-bg)";
 
 // Set the content of mainEl to <h1>DOM Manipulation</h1>.
 // Method 1
 // mainEl[0].innerHTML = "<h1>DOM Manipulation</h1>";
 // Method 2
-const h1 = mainEl[0].appendChild(document.createElement("h1"));
+const h1 = mainEl.appendChild(document.createElement("h1"));
 
 h1.textContent = "DOM Manipulation";
 
 // Add a class of flex-ctr to mainEl.
-mainEl[0].classList.add("flex-ctr");
+mainEl.classList.add("flex-ctr");
 
 // Select and cache the <nav id="top-menu"> element in a variable named topMenuEl.
 let topMenuEl = document.getElementById("top-menu");
@@ -72,17 +74,17 @@ menuLinks.forEach((link) => {
     topMenuEl.appendChild(a);
 });
 
-// Part 2: Adding Additional HTML and CSS-----------------------------------|
+// ✅PART 2: Adding Additional HTML and CSS-----------------------------------|
 // Add the following additional "sub-menu" < nav > element 
 // to the index.html file within your < header > element, 
 // beneath the existing < nav > element
 //Add to CSS properties
-let header=document.getElementsByTagName("header");
+let header=document.querySelector("header");
 let nav=document.createElement("nav");
 nav.setAttribute("id","sub-menu");
-header[0].appendChild(nav);
+header.appendChild(nav);
 
-//Part 3: Creating the Submenu
+//✅PART 3: Creating the Submenu----------------------------------|
 // Select and cache the < nav id = "sub-menu" > element in a 
 // variable named subMenuEl.
 let subMenuEl=document.getElementById("sub-menu");
@@ -100,7 +102,7 @@ subMenuEl.classList.add("flex-around");
 subMenuEl.style.position="absolute";
 subMenuEl.style.top="0";
 
-// Part 4: Adding Menu Interaction------------------------------------------|
+//✅ PART 4: Adding Menu Interaction------------------------------------------|
 // In order to add submenu links, we will need to restructure the menuLinks 
 // array within index.js.Update the menuLinks array 
 
@@ -109,6 +111,79 @@ subMenuEl.style.top="0";
 // in a variable named topMenuLinks.
 let topMenuLinks=topMenuEl.getElementsByTagName("a");
 // Attach a delegated 'click' event listener to topMenuEl.
-// The first line of code of the event listener function should call the event object's preventDefault() method.
-// The second line of code of the function should immediately return if the element clicked was not an < a > element.
-// Log the content of the < a > to verify the handler is working.
+for(let i=0;i<topMenuLinks.length;i++){
+   topMenuLinks[i].addEventListener("click", handleNavClick); 
+    
+};
+
+
+ function handleNavClick(event){
+    // The first line of code of the event listener function should call the event object's
+    //  preventDefault() method.
+   event.preventDefault();
+    // The second line of code of the function should immediately return if the element
+    // clicked was not an < a > element.
+
+                // either I can use: this.tagname or this.textContent or
+                // event.target.tagname or event.target.textcontent
+                // ---------------this=event.target-----------------------------|
+    //  console.log(this.tagName);
+    
+    
+    // -------------Method 1----------------|
+
+
+//        if (event.target.tagName ==='A'){
+//        console.log(`${event.target.textContent} at link ${event.target.href} was clicked`);
+    
+//     return;
+//    }
+
+// -------------------------Method 2---------------------|
+
+     if (this.tagName === 'A') {
+         // Log the content of the < a > to verify the handler is working.
+          console.log(`${this.textContent} at link ${this.href} was clicked`);
+// The event listener should remove the active class from each other < a > element in
+// topMenuLinks - whether the active class exists or not.
+//     Hint: Removing a non - existent class from an element does not cause an error!
+
+
+// grab the link if class is active else return null
+let linkActive = document.querySelector('.active');
+         console.log("Previous active link was",linkActive);
+         console.log("Current active link is",this.href);
+        // if link is active but is not the current clicked link,
+        //  then remove active coz some other link was clicked
+         if (linkActive && linkActive!=this.href){
+             linkActive.classList.remove("active");
+             
+         }
+
+// Within the event listener, if the clicked < a > element does not yet have a
+//  class of "active"(it was inactive when clicked):
+// If the clicked < a > element's "link" object within menuLinks has a subLinks
+// property (all do, except for the "link" object for ABOUT), set the CSS top
+// property of subMenuEl to 100%.
+// Otherwise, set the CSS top property of subMenuEl to 0.
+// Hint: Caching the "link" object will come in handy for passing its subLinks
+// array later.
+
+
+// The event listener should add the active class to the < a > element that was clicked,
+//  unless it was already active, in which case it should remove it.
+     
+        this.classList.toggle("active"); 
+          
+        return;
+     }
+   else{
+    return;
+   }
+     
+ }
+  
+//  Part 5: Adding Submenu Interaction--------------------------------------|
+
+    
+
