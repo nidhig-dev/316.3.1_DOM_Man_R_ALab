@@ -144,7 +144,70 @@ for(let i=0;i<topMenuLinks.length;i++){
      if (this.tagName === 'A') {
          // Log the content of the < a > to verify the handler is working.
           console.log(`${this.textContent} at link ${this.href} was clicked`);
-// The event listener should remove the active class from each other < a > element in
+
+
+
+         
+         // Otherwise, set the CSS top property of subMenuEl to 0.
+         // Hint: Caching the "link" object will come in handy for passing its subLinks
+         // array later.
+
+         // Within the event listener, if the clicked < a > element does not yet have a
+         //  class of "active"(it was inactive when clicked):
+
+         if (this.classList != ("active")) {
+             console.log("Link was not active");
+
+
+             menuLinks.forEach(link => {
+                // checking which main link is clicked
+                
+               if (link.text == this.textContent) {
+                   console.log(`${link.text} was clicked`)
+                // checking if the main link has a sublink
+                console.log("sublinks are",link.subLinks);
+        // If the clicked < a > element's "link" object within menuLinks has a subLinks
+        // property (all do, except for the "link" object for ABOUT), set the CSS top
+        // property of subMenuEl to 100%.
+                   if (link.subLinks) {
+                       subMenuEl.style.top = '100%';
+                        console.log("submenu el is",subMenuEl)
+                        // Emptying the previous submenu
+                        subMenuEl.textContent='';
+                       link.subLinks.forEach(sublink => {
+
+                        console.log(`The sublink for ${link.text} is ${sublink.text} ` );
+                           let subA = document.createElement("a");
+                           // On the new element, add an href attribute with its value set
+                           // to the href property of the "sublink" object.
+                           subA.setAttribute("href", sublink.href);
+                           // Set the new element's content to the value of the
+                           // text property of the "sublink" object.
+                           subA.textContent = sublink.text;
+                           // Append the new element to the subMenuEl element.
+                           subMenuEl.appendChild(subA); 
+                           
+                       });
+                       
+                          
+                   }
+                   else {
+                       subMenuEl.style.top = '0';
+                   }
+
+                   
+               }
+           });
+             
+             
+             
+         }
+         
+
+
+
+
+          // The event listener should remove the active class from each other < a > element in
 // topMenuLinks - whether the active class exists or not.
 //     Hint: Removing a non - existent class from an element does not cause an error!
 
@@ -160,19 +223,10 @@ let linkActive = document.querySelector('.active');
              
          }
 
-// Within the event listener, if the clicked < a > element does not yet have a
-//  class of "active"(it was inactive when clicked):
-// If the clicked < a > element's "link" object within menuLinks has a subLinks
-// property (all do, except for the "link" object for ABOUT), set the CSS top
-// property of subMenuEl to 100%.
-// Otherwise, set the CSS top property of subMenuEl to 0.
-// Hint: Caching the "link" object will come in handy for passing its subLinks
-// array later.
 
 
 // The event listener should add the active class to the < a > element that was clicked,
 //  unless it was already active, in which case it should remove it.
-     
         this.classList.toggle("active"); 
           
         return;
