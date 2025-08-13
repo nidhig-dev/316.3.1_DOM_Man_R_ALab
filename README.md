@@ -137,7 +137,7 @@ The submenu needs to be dynamic based on the clicked link. To facilitate that, w
 1. ✅Attach a delegated 'click' event listener to subMenuEl.
     - ✅The first line of code of the event listener function should call the event object's preventDefault() method.
     - ✅The second line of code within the function should immediately return if the element clicked was not an ```<a>``` element.
-    -✅ Log the content of the ```<a>``` to verify the handler is working.
+    - ✅ Log the content of the ```<a>``` to verify the handler is working.
 2. ✅Next, the event listener should set the CSS top property of subMenuEl to 0.
 3. ✅Remove the active class from each ```<a>``` element in topMenuLinks.
 4. ✅Update the contents of mainEl, within an ```<h1>```, to the contents of the ```<a>``` element clicked within subMenuEl.
@@ -148,7 +148,7 @@ The submenu needs to be dynamic based on the clicked link. To facilitate that, w
 1. What could you have done differently during the planning stages of your project to make the execution easier?
 
     Pretty happy with the way I approached it.
-    
+
 2. What would you add to, or change about your application if given more time?
 
     Nothing.
