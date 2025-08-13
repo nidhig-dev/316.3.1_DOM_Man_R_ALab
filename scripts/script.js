@@ -7,7 +7,7 @@
 // ];
 
 // PART 4.1-----------------------------------------|
-/*var menuLinks = [
+var menuLinks = [
     { text: 'about', href: '/about' },
     {
         text: 'catalog', href: 'catalog', subLinks: [
@@ -29,8 +29,8 @@
             { text: 'sign out', href: '/account/signout' },
         ]
     },
-];*/
-var menuLinks = [
+];
+/*var menuLinks = [
     { text: 'about', href: '/about' },
     {
         text: 'catalog', href: '#', subLinks: [
@@ -52,7 +52,7 @@ var menuLinks = [
             { text: 'sign out', href: '/account/signout' },
         ]
     },
-];
+];*/
 
 // PART-1--------------------------------------------------|
 // Now that you have a deeper understanding of DOM manipulation concepts,
@@ -164,7 +164,7 @@ function handleNavClick(event) {
 
     if (this.tagName === 'A') {
         // 4.2.2.c Log the content of the < a > to verify the handler is working.
-         console.log(`${(this.textContent).toUpperCase()} was clicked`);
+         console.log(`${(this.textContent).toUpperCase()} was clicked and the href link is ${this.href}`);
 
         //  PART 5.1 Within the event listener, if the clicked < a > element does not yet have a
         //  class of "active"(it was inactive when clicked):
