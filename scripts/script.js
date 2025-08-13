@@ -81,10 +81,10 @@ menuLinks.forEach((link) => {
 // to the index.html file within your < header > element, 
 // beneath the existing < nav > element
 //Add to CSS properties
-let header = document.querySelector("header");
-let nav = document.createElement("nav");
-nav.setAttribute("id", "sub-menu");
-header.appendChild(nav);
+// let header = document.querySelector("header");
+// let nav = document.createElement("nav");
+// nav.setAttribute("id", "sub-menu");
+// header.appendChild(nav);
 
 //✅PART 3: Creating the Submenu----------------------------------|
 // 3.1.1 Select and cache the < nav id = "sub-menu" > element in a 
