@@ -7,7 +7,7 @@
 // ];
 
 // PART 4.1-----------------------------------------|
-var menuLinks = [
+/*var menuLinks = [
     { text: 'about', href: '/about' },
     {
         text: 'catalog', href: 'catalog', subLinks: [
@@ -17,7 +17,7 @@ var menuLinks = [
         ]
     },
     {
-        text: 'orders', href: '#orders', subLinks: [
+        text: 'orders', href: 'orders', subLinks: [
             { text: 'new', href: '/orders/new' },
             { text: 'pending', href: '/orders/pending' },
             { text: 'history', href: '/orders/history' },
@@ -29,7 +29,31 @@ var menuLinks = [
             { text: 'sign out', href: '/account/signout' },
         ]
     },
+];*/
+var menuLinks = [
+    { text: 'about', href: '/about' },
+    {
+        text: 'catalog', href: '#', subLinks: [
+            { text: 'all', href: '/catalog/all' },
+            { text: 'top selling', href: '/catalog/top' },
+            { text: 'search', href: '/catalog/search' },
+        ]
+    },
+    {
+        text: 'orders', href: '#', subLinks: [
+            { text: 'new', href: '/orders/new' },
+            { text: 'pending', href: '/orders/pending' },
+            { text: 'history', href: '/orders/history' },
+        ]
+    },
+    {
+        text: 'account', href: '#', subLinks: [
+            { text: 'profile', href: '/account/profile' },
+            { text: 'sign out', href: '/account/signout' },
+        ]
+    },
 ];
+
 // PART-1--------------------------------------------------|
 // Now that you have a deeper understanding of DOM manipulation concepts,
 // ✅ if there is anything you would like to fix or change, now is the time to do so.
@@ -100,8 +124,8 @@ subMenuEl.classList.add("flex-around");
 // Now, change the position of the submenu to temporarily hide it.
 //  Later, we will make the submenu appear dynamically based on user interaction:
 // 3.2.1 Set the CSS position property of subMenuEl to the value of absolute.
-//3.2.2 Set the CSS top property of subMenuEl to the value of 0.
 subMenuEl.style.position = "absolute";
+//3.2.2 Set the CSS top property of subMenuEl to the value of 0.
 subMenuEl.style.top = "0";
 
 //✅ PART 4: Adding Menu Interaction------------------------------------------|
@@ -140,32 +164,30 @@ function handleNavClick(event) {
 
     if (this.tagName === 'A') {
         // 4.2.2.c Log the content of the < a > to verify the handler is working.
-        console.log(`${this.textContent} at link ${this.href} was clicked`);
+         console.log(`${(this.textContent).toUpperCase()} was clicked`);
 
         //  PART 5.1 Within the event listener, if the clicked < a > element does not yet have a
         //  class of "active"(it was inactive when clicked):
 
         if (this.classList != ("active")) {
-            console.log("Link was not active");
+            // console.log("Link was not active");
             menuLinks.forEach(link => {
                 // checking which main link is clicked with the menulinks array's text
 
                 if (link.text == this.textContent) {
-                    console.log(`${link.text} was clicked`)
                     // checking if the main link has a sublink
-                    console.log("sublinks are", link.subLinks);
                     // PART -5.1.a-------------------------------------------------|
                     // If the clicked < a > element's "link" object within menuLinks has a subLinks
                     // property (all do, except for the "link" object for ABOUT), set the CSS top
                     // property of subMenuEl to 100%.
                     if (link.subLinks) {
                         subMenuEl.style.top = '100%';
-                        console.log("submenu el is", subMenuEl)
+                        // console.log("submenu el is", subMenuEl)
 
-                        // Call helper function buildSubmenu
+                        // 5.2- Call helper function buildSubmenu
                         subMenuEl=buildSubmenu(subMenuEl,link.subLinks);
                         
-                        // Attach a delegated 'click' event listener to subMenuEl.
+                        // 5.3 Attach a delegated 'click' event listener to subMenuEl.
                         let subMenuLinks=subMenuEl.getElementsByTagName('a');
                         for(let i=0;i<subMenuLinks.length;i++){
                             subMenuLinks[i].addEventListener('click', handleSubMenuLinks);
@@ -177,7 +199,7 @@ function handleNavClick(event) {
                         //5.1.b- Otherwise, set the CSS top property of subMenuEl to 0.
 
                         subMenuEl.style.top = '0';
- // Part 5.3.5----------------------------|
+                        // Part 5.3.5----------------------------|
                         // If the ABOUT link is clicked, an < h1 > About</h1 > should be displayed.
 
                         let newH1 = mainEl.querySelector('h1');
@@ -198,8 +220,8 @@ function handleNavClick(event) {
         
         // grab the link if class is active else return null
         let linkActive = document.querySelector('.active');
-        console.log("Previous active link was", linkActive);
-        console.log("Current active link is", this.href);
+        // console.log("Previous active link was", linkActive);
+        // console.log("Current active link is", this.href);
         // if link is active but is not the current clicked link,
         //  then remove active coz some other link was clicked
         if (linkActive && linkActive != this.href) {
@@ -227,7 +249,7 @@ function handleSubMenuLinks(event) {
     //PART 5.3.1 (a)-----------------------------------------------------------|
     //  The first line of code of the event listener function should call 
     // the event object's preventDefault() method.
-    console.log("Entered sub link menu ");
+    // console.log("Entered sub link menu ");
     event.preventDefault();
     // PART 5.3.1(b)-------------------------------------------------------------|
     // The second line of code within the function should immediately return
@@ -235,7 +257,7 @@ function handleSubMenuLinks(event) {
     if (this.tagName === 'A') {
         // PART 5.3.1 (c)-----------------------------------------------------|
         // Log the content of the < a > to verify the handler is working.
-        console.log(this.href);
+         console.log(this.href);
         // PART 5.3.2-------------------------------------------------------|
         // Next, the event listener should set the CSS top property of subMenuEl to 0.
         subMenuEl.style.top='0';
@@ -257,7 +279,7 @@ function handleSubMenuLinks(event) {
         // The event listener should add the active class to the < a > element that was clicked,
         //  unless it was already active, in which case it should remove it.
         this.classList.toggle("active");
-        console.log("I clicked same link again");
+        // console.log("I clicked same link again");
         
         // PART- 5.3.4----------------------------------------------------|
         // Update the contents of mainEl, within an < h1 >, to the contents
@@ -272,6 +294,7 @@ function handleSubMenuLinks(event) {
         return;
     }
 }
+
 function buildSubmenu(subMenuEl,subLinks){
 
 // PART 5.2.1----------------------------------------------|
@@ -296,6 +319,6 @@ function buildSubmenu(subMenuEl,subLinks){
         subMenuEl.appendChild(subA);
 
     });
-    console.log("submenu el in helper function is",subMenuEl)
+    // console.log("submenu el in helper function is",subMenuEl)
     return(subMenuEl);
 }
