@@ -10,21 +10,21 @@
 var menuLinks = [
     { text: 'about', href: '/about' },
     {
-        text: 'catalog', href: 'catalog', subLinks: [
+        text: 'catalog', href: '/catalog', subLinks: [
             { text: 'all', href: '/catalog/all' },
             { text: 'top selling', href: '/catalog/top' },
             { text: 'search', href: '/catalog/search' },
         ]
     },
     {
-        text: 'orders', href: 'orders', subLinks: [
+        text: 'orders', href: '/orders', subLinks: [
             { text: 'new', href: '/orders/new' },
             { text: 'pending', href: '/orders/pending' },
             { text: 'history', href: '/orders/history' },
         ]
     },
     {
-        text: 'account', href: 'account', subLinks: [
+        text: 'account', href: '/account', subLinks: [
             { text: 'profile', href: '/account/profile' },
             { text: 'sign out', href: '/account/signout' },
         ]
