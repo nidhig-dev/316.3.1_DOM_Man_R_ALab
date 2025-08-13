@@ -181,7 +181,7 @@ function handleNavClick(event) {
                         // If the ABOUT link is clicked, an < h1 > About</h1 > should be displayed.
 
                         let newH1 = mainEl.querySelector('h1');
-                        newH1.textContent = this.textContent;
+                        newH1.textContent = (this.textContent).toUpperCase();
 
                     }
                 }
@@ -263,7 +263,7 @@ function handleSubMenuLinks(event) {
         // Update the contents of mainEl, within an < h1 >, to the contents
         //  of the < a > element clicked within subMenuEl.
         let newH1 = mainEl.querySelector('h1');
-        newH1.textContent=this.textContent;
+        newH1.textContent = (this.textContent).toUpperCase();;
 
 
         return;
