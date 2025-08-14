@@ -10,29 +10,6 @@
 var menuLinks = [
     { text: 'about', href: '/about' },
     {
-        text: 'catalog', href: '/catalog', subLinks: [
-            { text: 'all', href: '/catalog/all' },
-            { text: 'top selling', href: '/catalog/top' },
-            { text: 'search', href: '/catalog/search' },
-        ]
-    },
-    {
-        text: 'orders', href: '/orders', subLinks: [
-            { text: 'new', href: '/orders/new' },
-            { text: 'pending', href: '/orders/pending' },
-            { text: 'history', href: '/orders/history' },
-        ]
-    },
-    {
-        text: 'account', href: '/account', subLinks: [
-            { text: 'profile', href: '/account/profile' },
-            { text: 'sign out', href: '/account/signout' },
-        ]
-    },
-];
-/*var menuLinks = [
-    { text: 'about', href: '/about' },
-    {
         text: 'catalog', href: '#', subLinks: [
             { text: 'all', href: '/catalog/all' },
             { text: 'top selling', href: '/catalog/top' },
@@ -52,7 +29,7 @@ var menuLinks = [
             { text: 'sign out', href: '/account/signout' },
         ]
     },
-];*/
+];
 
 // PART-1--------------------------------------------------|
 // Now that you have a deeper understanding of DOM manipulation concepts,
@@ -221,10 +198,11 @@ function handleNavClick(event) {
         // grab the link if class is active else return null
         let linkActive = document.querySelector('.active');
         // console.log("Previous active link was", linkActive);
-        // console.log("Current active link is", this.href);
+        //  console.log("Current active link is", this.href);
+        // console.log("Current active link is", this.textContent);
         // if link is active but is not the current clicked link,
         //  then remove active coz some other link was clicked
-        if (linkActive && linkActive != this.href) {
+        if (linkActive && linkActive.textContent != this.textContent) {
             linkActive.classList.remove("active");
 
         }
